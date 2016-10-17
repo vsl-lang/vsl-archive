@@ -27,3 +27,8 @@
 *.exe
 *.out
 *.app
+
+# Lex/Yacc files
+*.tab.*
+*.yy.*
+y.output
