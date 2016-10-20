@@ -7,6 +7,8 @@ class VSLCallable;
 
 class VSLObject;
 
+class VSLNull;
+
 stlfunc get_stl_function(string name);
 
 #endif //VSL_LIMBO_CPP_H
