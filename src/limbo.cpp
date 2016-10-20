@@ -13,7 +13,7 @@ class VSLNull {
     // name not yet agreed upon, temporary
 }
 
-stlfunc* get_stl_function(string name) {
+stlfunc* inline get_stl_function(string name) {
     if (name != FUNCTION_NAMES.end()) {
         return *FUNCTION_NAMES[name]
     } else {
