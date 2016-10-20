@@ -9,6 +9,9 @@ class VSLObject {
     
 };
 
+class VSLNull {
+    // name not yet agreed upon, temporary
+}
 
 stlfunc get_stl_function(string name) {
     
