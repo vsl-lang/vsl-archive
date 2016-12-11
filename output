@@ -1,0 +1,162 @@
+        
+Statement
+└Binary expression
+ ├Assign
+ ├Declaration
+ │├"const"
+ │└Typed
+ │ ├"gaot"
+ │ └"string"
+ └String
+  └"Downgaot"
+   
+Statement
+└Command chain
+ ├Tuple
+ │└"print"
+ └Tuple
+  └Binary expression
+   ├Plus
+   ├String
+   │└"gaots naem is "
+   └"gaot"
+           
+Statement
+└Command chain
+ ├Tuple
+ │└"print"
+ └Tuple
+  └Binary expression
+   ├Plus
+   ├Binary expression
+   │├Plus
+   │├Binary expression
+   ││├Plus
+   ││├String
+   │││└"This is true: "
+   ││└"string"
+   │└Binary expression
+   │ ├Plus
+   │ ├Number
+   │ │└"1"
+   │ └Number
+   │  └"1"
+   └Property
+    ├"foo"
+    └Property suffix
+     ├Call
+     │└"all"
+     ├Call
+     │└"gaots"
+     ├Call
+     │└"are"
+     ├Call
+     │└"better"
+     ├Call
+     │└"than"
+     └Call
+      └"sheep"
+   
+Statement
+└Command chain
+ ├Tuple
+ │└"open"
+ ├Tuple
+ │└String
+ │ └"file.txt"
+ ├Tuple
+ │└"write"
+ └Tuple
+  └String
+   └"GAOT > SHEP"
+
+Statement
+└Command chain
+ └Tuple
+  └Binary expression
+   ├Cast
+   ├"tring"
+   └Binary expression
+    ├Cast
+    ├"number"
+    └Binary expression
+     ├Cast
+     ├"string"
+     └Binary expression
+      ├Cast
+      ├"number"
+      └Binary expression
+       ├Cast
+       ├"bool"
+       └Binary expression
+        ├Cast
+        ├"number"
+        └Binary expression
+         ├Cast
+         ├"string"
+         └Number
+          └"10"
+            
+Statement
+└Command chain
+ └Tuple
+  └Binary expression
+   ├Assign
+   ├Number
+   │└"1"
+   └Binary expression
+    ├Bitwise and equals
+    ├Number
+    │└"2"
+    └Binary expression
+     ├Plus equals
+     ├Number
+     │└"3"
+     └Binary expression
+      ├Times equals
+      ├Number
+      │└"4"
+      └Binary expression
+       ├Power equals
+       ├Number
+       │└"5"
+       └Binary expression
+        ├Minus equals
+        ├Number
+        │└"6"
+        └String
+         └"yay"
+    
+Statement
+└Command chain
+ └Tuple
+  └Binary expression
+   ├Assign
+   ├"a"
+   └Binary expression
+    ├Assign
+    ├"b"
+    └Number
+     └"1"
+
+Statement
+└Command chain
+ └Tuple
+  └String
+   └"yay\'\'\'\'
+yay
+yay"
+
+Statement
+└Command chain
+ └Tuple
+  └Regex
+   └"/g[ao]{2}t/gmi"
+ 
+Statement
+└Command chain
+ └Tuple
+  └Binary expression
+   ├Plus
+   ├"dooooowwwwwwwnnnnnn"
+   └"gaaaaoooooootttttt"
