@@ -1,15 +1,16 @@
 #ifndef SCOPE_H
 #define SCOPE_H
-#include "../vsl.hpp"
+
+#include "vsl.hpp"
 
 namespace vsl {
 class Scope {
-    private:
-        map<std::string, Variable*> data;
+private:
+    std::unordered_map<std::string, Variable*> data;
     
-    public:
-        Variable& get(std::string key);
-        void set(std::string key, Variable* value);
+public:
+    Variable& get(std::string key);
+    void set(std::string key, Variable* value);
 }
 }
 

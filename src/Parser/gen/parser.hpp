@@ -30,8 +30,8 @@
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
 
-#ifndef YY_YY_GEN_PARSER_HPP_INCLUDED
-# define YY_YY_GEN_PARSER_HPP_INCLUDED
+#ifndef YY_YY_SRC_PARSER_GEN_PARSER_HPP_INCLUDED
+# define YY_YY_SRC_PARSER_GEN_PARSER_HPP_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -40,11 +40,12 @@
 extern int yydebug;
 #endif
 /* "%code requires" blocks.  */
-#line 18 "parser.y" /* yacc.c:1909  */
+#line 19 "src/Parser/parser.y" /* yacc.c:1909  */
 
 #include "run.hpp"
+using VSLNode = VSL::Parser::Node;
 
-#line 48 "gen/parser.hpp" /* yacc.c:1909  */
+#line 49 "src/Parser/gen/parser.hpp" /* yacc.c:1909  */
 
 /* Token type.  */
 #ifndef YYTOKENTYPE
@@ -113,23 +114,26 @@ extern int yydebug;
     INTERFACE = 317,
     TRAIT = 318,
     ENUM = 319,
-    IDENTIFIER = 320,
-    SPECIAL_IDENTIFIER = 321,
-    SPECIAL_ARGUMENT = 322,
-    SPECIAL_LOOP_ARGUMENT = 323,
-    NUMBER = 324,
-    SINGLE_QUOTED_STRING = 325,
-    DOUBLE_QUOTED_STRING = 326,
-    REGEX = 327,
-    CC = 328,
-    EXPRESSIONS = 329,
-    PREFIX = 330
+    IF = 320,
+    FOR = 321,
+    WHILE = 322,
+    IDENTIFIER = 323,
+    SPECIAL_IDENTIFIER = 324,
+    SPECIAL_ARGUMENT = 325,
+    SPECIAL_LOOP_ARGUMENT = 326,
+    NUMBER = 327,
+    SINGLE_QUOTED_STRING = 328,
+    DOUBLE_QUOTED_STRING = 329,
+    REGEX = 330,
+    CC = 331,
+    EXPRESSIONS = 332,
+    PREFIX = 333
   };
 #endif
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef Node YYSTYPE;
+typedef VSL::Parser::Node YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif
@@ -139,4 +143,4 @@ extern YYSTYPE yylval;
 
 int yyparse (void);
 
-#endif /* !YY_YY_GEN_PARSER_HPP_INCLUDED  */
+#endif /* !YY_YY_SRC_PARSER_GEN_PARSER_HPP_INCLUDED  */

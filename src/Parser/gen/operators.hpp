@@ -1,6 +1,7 @@
 #ifndef OPERATORS_H
 #define OPERATORS_H
 enum class Operator {
+    NONE,
     RANGE,
     ASSIGN,
     STRICT_ASSIGN,

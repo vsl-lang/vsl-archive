@@ -2,7 +2,10 @@
 #include <string>
 #include "parser.hpp"
 #include "run.hpp"
+#include "nodes.hpp"
 #define YY_DECL extern "C" int yylex()
+using VSLNode = VSL::Parser::Node;
+using VSLNodeType = VSL::Parser::VNodeType;
 int comment_depth;
 //TODO: slice(1) for special identifier
 
@@ -20,11 +23,11 @@ int comment_depth;
 "\""             BEGIN(D_STRING);
 "'"              BEGIN(S_STRING);
 <D_STRING>([^\\"]|\\.)* {
-    yylval = DataNode(yytext);
+    yylval = VSLNode(yytext, VSLNodeType::DATA);
     return DOUBLE_QUOTED_STRING;
 }
 <S_STRING>([^\\']|\\.)* {
-    yylval = DataNode(yytext);
+    yylval = VSLNode(yytext, VSLNodeType::DATA);
     return SINGLE_QUOTED_STRING;
 }
 <D_STRING>"\""   BEGIN(INITIAL);
@@ -100,37 +103,40 @@ int comment_depth;
 "trait"          return TRAIT;
 "trt"            return TRAIT;
 "enum"           return ENUM;
+"if"             return IF;
+"for"            return FOR;
+"while"          return WHILE;
 
 $[0-9]+ {
-    yylval = DataNode(yytext);
+    yylval = VSLNode(yytext, VSLNodeType::DATA);
     return SPECIAL_ARGUMENT;
 }
 
 $_[0-9]+ {
-    yylval = DataNode(yytext);
+    yylval = VSLNode(yytext, VSLNodeType::DATA);
     return SPECIAL_LOOP_ARGUMENT;
 }
 
 $?[a-zA-Z_][a-zA-Z0-9_]* {
     if (yytext[0] == '$') {
-        yylval = DataNode(yytext);
+        yylval =  VSLNode(yytext, VSLNodeType::DATA);
         return SPECIAL_IDENTIFIER;
     }
-    yylval = DataNode(yytext);
+    yylval = VSLNode(yytext, VSLNodeType::DATA);
     return IDENTIFIER;
 }
 
 -?\.[0-9_]+ {
-    yylval = DataNode(yytext);
+    yylval = VSLNode(yytext, VSLNodeType::DATA);
     return NUMBER;
 }
 -?[0-9][0-9_]*\.?[0-9_]* {
-    yylval = DataNode(yytext);
+    yylval = VSLNode(yytext, VSLNodeType::DATA);
     return NUMBER;
 }
 
 "/"[^\/\*]([^\\/\r\n]|\\[^\r\n])+"/"[gmixc]* {
-    yylval = DataNode(yytext);
+    yylval = VSLNode(yytext, VSLNodeType::DATA);
     return REGEX;
 }
 %%

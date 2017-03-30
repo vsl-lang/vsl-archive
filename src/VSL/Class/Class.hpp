@@ -4,10 +4,10 @@
 
 namespace vsl {
 class Class: public Scope {
-    public:
-        static string name;
+public:
+    static string name;
 
-        Scope* scope;
+    Scope* scope;
 }
 }
 

@@ -5,8 +5,8 @@
 namespace vsl {
 template<class vsl::Class*>
 class Object: public Class {
-    public:
-        vsl::Method* init;
+public:
+    vsl::Method* init;
 }
 }
 

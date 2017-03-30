@@ -1,0 +1,146 @@
+namespace Asm {
+    64_BIT = 0x48;
+
+    enum MemoryType {
+        Register,
+        Memory
+    }
+    
+    enum RegisterName {
+        al,
+        cl,
+        dl,
+        bl,
+        ah,
+        ch,
+        dh,
+        bh,
+        none
+    }
+    
+    struct Operand {
+        type: MemoryType,
+        name: RegisterName = none,
+        exponent: byte // of bytes e.g. 8-bit = 2^0 bytes
+    }
+    
+    static class .Registers {
+        Operand al { .Register, .al, 0 }
+        Operand cl { .Register, .cl, 0 }
+        Operand dl { .Register, .dl, 0 }
+        Operand bl { .Register, .bl, 0 }
+        Operand ah { .Register, .ah, 0 }
+        Operand ch { .Register, .ch, 0 }
+        Operand dh { .Register, .dh, 0 }
+        Operand bh { .Register, .bh, 0 }
+        Operand ax { .Register, .al, 1 }
+        Operand cx { .Register, .cl, 1 }
+        Operand dx { .Register, .dl, 1 }
+        Operand bx { .Register, .bl, 1 }
+        Operand sp { .Register, .ah, 1 }
+        Operand bp { .Register, .ch, 1 }
+        Operand si { .Register, .dh, 1 }
+        Operand di { .Register, .bh, 1 }
+        Operand eax { .Register, .al, 2 }
+        Operand ecx { .Register, .cl, 2 }
+        Operand edx { .Register, .dl, 2 }
+        Operand ebx { .Register, .bl, 2 }
+        Operand esp { .Register, .ah, 2 }
+        Operand ebp { .Register, .ch, 2 }
+        Operand esi { .Register, .dh, 2 }
+        Operand edi { .Register, .bh, 2 }
+        Operand rax { .Register, .al, 3 }
+        Operand rcx { .Register, .cl, 3 }
+        Operand rdx { .Register, .dl, 3 }
+        Operand rbx { .Register, .bl, 3 }
+        Operand rsp { .Register, .ah, 3 }
+        Operand rbp { .Register, .ch, 3 }
+        Operand rsi { .Register, .dh, 3 }
+        Operand rdi { .Register, .bh, 3 }
+        Operand mmx0 { .Register, .al, 3 }
+        Operand mmx1 { .Register, .cl, 3 }
+        Operand mmx2 { .Register, .dl, 3 }
+        Operand mmx3 { .Register, .bl, 3 }
+        Operand mmx4 { .Register, .ah, 3 }
+        Operand mmx5 { .Register, .ch, 3 }
+        Operand mmx6 { .Register, .dh, 3 }
+        Operand mmx7 { .Register, .bh, 3 }
+        Operand xmm0 { .Register, .al, 4 }
+        Operand xmm1 { .Register, .cl, 4 }
+        Operand xmm2 { .Register, .dl, 4 }
+        Operand xmm3 { .Register, .bl, 4 }
+        Operand xmm4 { .Register, .ah, 4 }
+        Operand xmm5 { .Register, .ch, 4 }
+        Operand xmm6 { .Register, .dh, 4 }
+        Operand xmm7 { .Register, .bh, 4 }
+/*
+        Operand ymm0 { .Register, .al, 5 }
+        Operand ymm1 { .Register, .cl, 5 }
+        Operand ymm2 { .Register, .dl, 5 }
+        Operand ymm3 { .Register, .bl, 5 }
+        Operand ymm4 { .Register, .ah, 5 }
+        Operand ymm5 { .Register, .ch, 5 }
+        Operand ymm6 { .Register, .dh, 5 }
+        Operand ymm7 { .Register, .bh, 5 }
+*/
+    }
+    
+    operandToByte (destination: Operand): byte {
+        return mod << 6 | destination.name << 3;
+    }
+    
+    operandToByte (left: Operand, right: Operand): byte {
+        return mod << 6 | left.name << 3 | right.name;
+    }
+    
+    abstract class Asm {
+        // TODO
+        inc (destination: Operand): void {
+            result = [0xFE, operandToByte(destination)];
+            switch first.exponent {
+                case 0:
+                    return result;
+                case 3:
+                    return [64_BIT] + result;
+                default:
+                    return result;
+            }
+        }
+        
+        // TODO
+        dec (destination: Operand): void {
+            result = [0xFF, operandToByte(destination)];
+            switch first.exponent {
+                case 0:
+                    return result;
+                case 3:
+                    return [64_BIT] + result;
+                default:
+                    return result;
+            }
+        }
+        
+        add (first: Operand, second: Operand): void {
+            switch first.exponent {
+                case 0:
+                    switch second.exponent {
+                        case 0:
+                            if (first.type == Memory)
+                                return [0x00, operandToByte(left, right)];
+                            elif (second.type == Memory)
+                                return [0x02, operandToByte(left, right)];
+                    }
+                default:
+                    switch second.exponent {
+                        case 0:
+                            break;
+                        default:
+                            if (first.type == Memory)
+                                return [0x01, operandToByte(left, right)];
+                            elif (second.type == Memory)
+                                return [0x03, operandToByte(left, right)];
+                    }
+            }
+        }
+    }
+}

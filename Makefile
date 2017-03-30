@@ -7,33 +7,34 @@ CPPFLAGS=-std=c++11 -lgmpxx -lgmp -Wall -O3
 default: vsl
 
 gen:
-	mkdir -p src/gen
-	bison -Wno-other -o src/gen/parser.cpp -d -v src/parser.y
-	flex -o src/gen/lexer.cpp src/lexer.l
+	mkdir -p src/Parser/gen
+	bison -Wno-other -o src/Parser/gen/parser.cpp -d -v src/Parser/parser.y
+	flex -o src/Parser/gen/lexer.cpp src/Parser/lexer.l
 
 basic_vsl:
-	mkdir -p src/gen
-	bison -Wno-other -o src/gen/parser.cpp -d -v src/parser.y
-	flex -o src/gen/lexer.cpp src/lexer.l
-	cp src/operators.hpp src/gen/
-	$(CC) $(CPPFLAGS) src/gen/run.cpp src/gen/lexer.cpp src/gen/parser.cpp -lfl -o parser
+	mkdir -p src/Parser/gen
+	bison -Wno-other -o src/Parser/gen/parser.cpp -d -v src/Parser/parser.y
+	flex -o src/Parser/gen/lexer.cpp src/Parser/lexer.l
+	cp src/Parser/operators.hpp src/Parser/gen/
+	cp src/Parser/nodes.hpp src/Parser/gen/
+	$(CC) $(CPPFLAGS) src/Parser/gen/run.cpp src/Parser/gen/lexer.cpp src/Parser/gen/parser.cpp -lfl -o parser
 
 astify:
-	mkdir -p src/gen
-	cp src/astify.cpp src/gen/run.cpp
-	cp src/astify.hpp src/src/gen/run.hpp
+	mkdir -p src/Parser/gen
+	cp src/Parser/astify.cpp src/Parser/gen/run.cpp
+	cp src/Parser/astify.hpp src/Parser/gen/run.hpp
 	make basic_vsl
 
 interpret:
-	mkdir -p src/gen
-	cp src/interpret.cpp src/gen/run.cpp
-	cp src/interpret.hpp src/gen/run.hpp
+	mkdir -p src/Parser/gen
+	cp src/Parser/interpret.cpp src/Parser/gen/run.cpp
+	cp src/Parser/interpret.hpp src/Parser/gen/run.hpp
 	make basic_vsl
 
 classes:
-	$(CC) $(CPPFLAGS) src/VSL/Class/Class.cpp src/gen/lexer.cpp src/gen/parser.cpp -o classes
+	$(CC) $(CPPFLAGS) src/Parser/VSL/Class/Class.cpp src/Parser/gen/lexer.cpp src/Parser/gen/parser.cpp -o classes
 
 clean:
-	mkdir -p src/gen
-	rm -r src/gen
+	mkdir -p src/Parser/gen
+	rm -r src/Parser/gen
 

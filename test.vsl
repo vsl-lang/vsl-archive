@@ -9,6 +9,16 @@
  *   ok 
  */
 //test things
+/*
+fn foo {
+    //lol
+}
+fn foo(wat: string) {
+    //lul
+}
+if foo {}
+if (foo) 
+*/
 const gaot: string = /* /* nested block comment inside expression */*/
     "Downgaot";
 print "gaots naem is " + gaot;
