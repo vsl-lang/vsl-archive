@@ -8,8 +8,8 @@ namespace Transform {
     struct Watcher {
         NodeTree* tree;
         Node* (*transform)(Node*);
-    }
+    };
 }
 }
 
-#endif WATCHER_H
+#endif

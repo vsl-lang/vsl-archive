@@ -1,23 +1,10 @@
 #ifndef TRANSFORM_H
 #define TRANSFORM_H
 
-#import "Watcher/watcher.hpp"
+#include "Watcher/watcher.hpp"
 
 namespace VSL {
 namespace Transform {
-    // Fuzzy matches a AST subtree
-    struct NodeTree {
-        struct NodeMatch {
-            NodeTree[] child;
-            size_t children;
-        }
-        
-        Parser::NodeType type;
-        
-        // Set to nullptr for no children
-        NodeMatch children;
-    }
-    
     class Transformer {
         class WatcherTree {
         private:
@@ -29,7 +16,7 @@ namespace Transform {
             Watcher* watcher;
             
             // Checks if a node matches the AST transform
-            inline bool matches( const Node& node );
+            inline bool matches( const Parser::Node& node );
         }
         
     private:
@@ -37,6 +24,19 @@ namespace Transform {
         Node* transform(Node*);
         
     public:
+        // Fuzzy matches a AST subtree
+        struct NodeTree {
+            struct NodeMatch {
+                NodeTree[] child;
+                size_t children;
+            }
+            
+            Parser::NodeType type;
+            
+            // Set to nullptr for no children
+            NodeMatch children;
+        };
+        
         Transformer();
         ~Transformer();
         

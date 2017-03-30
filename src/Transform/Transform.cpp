@@ -13,10 +13,6 @@ namespace Transform {
         }
     }
     
-    Transformer::defaultWatchers() {
-        
-    }
-    
     Transformer::~Transformer() {
         // Deintitalize watcher trees
         size_t length = sizeof(this->watchers) / sizeof(Watcher);
