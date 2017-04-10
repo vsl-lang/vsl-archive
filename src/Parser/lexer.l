@@ -5,7 +5,7 @@
 #include "nodes.hpp"
 #define YY_DECL extern "C" int yylex()
 using VSLNode = VSL::Parser::Node;
-using VSLNodeType = VSL::Parser::VNodeType;
+using VSLNodeType = VSL::Parser::NodeType;
 int comment_depth;
 //TODO: slice(1) for special identifier
 

@@ -19,7 +19,8 @@ void yyerror(const char *message);
 %code requires {
 #include "run.hpp"
 using VSLNode = VSL::Parser::Node;
-using VSLVSLNodeType = VSL::Parser::NodeType;
+using VSLNodeType = VSL::Parser::NodeType;
+using Operator = VSL::Parser::Operator;
 }
 
 %token RANGE                 ".."
